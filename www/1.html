@@ -1,0 +1,162 @@
+
+<script type="text/javascript">
+
+// Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+
+// Make the actual CORS request.
+function makeCorsRequest(url) {
+  // This is a sample server that supports CORS.
+  //var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
+
+  var xhr = createCORSRequest('GET', url);
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    var text = xhr.responseText;
+    var title = getTitle(text);
+    alert('Response from CORS request to ' + url + ': ' + title);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+}
+
+
+ var urlPlaceAPI = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=12.863210599999999,77.768051&radius=500&type=restaurant&key=AIzaSyCW-5tzlsifSVVgS_4vyN8-H2HeI5CGLQo'
+var xhr = makeCorsRequest( urlPlaceAPI);
+
+/*function discERCMVlan()
+{
+  //var origequipname=document.viewEquipmentForm.ptniiName.value;
+
+		  var args = "<div>" + 
+		  "<p>" + "Caution .....This button will disconnect the ERCM monitoring VLAN" + "</p>" + "</div>";
+
+		  var html ="<div id='promptDialog' style ='background-color: #F0FFFF;margin: auto;padding: 20px;border: 1px solid #888;width: 40%; position:absolute; top:50%; right:0; left:0; bottom:0'>" +
+					"<div id='promptMessage'>" + args + "</div>"+ 
+					"<div id = 'warningtext' style='background-color: #ffb6c1; font-weight:bold;color:#0000A0;'></div><form>" +"PTNII Name:<input type='text' id='pntiiId' name='pntiiTxt' value='' placeholder='enter the equipment code of the device'>" +"<br><br><br>"+
+
+					"<script type='text/javascript'>" +
+							"function callParentDisconnect(ptniiName) {" +
+								"window.opener.disconnect(ptniiName) ;" +
+								"this.close();"+
+							"}"+
+							"function cancel() {"+
+								"this.close();"+
+							"}"+
+					"<\/script>" +
+						 "<button id='promptCancel' type='button' onclick = 'cancel()'>Cancel</button>"  + 
+							"<button id='promptDisconnect' type='button' onclick='callParentDisconnect(document.getElementById(\"pntiiId\").value)'>Disconnect</button></form>" +
+					"<div>";
+		  
+  var win = window.open("","","height=500 , width=1500, toolbar=0, menubar=0,resizable=1");
+  
+   win.document.write(html);
+
+}
+*/
+
+ function discERCMVlan()
+{
+//var origequipname=document.viewEquipmentForm.ptniiName.value;
+alert("inside the parent method discERCMVlan");
+var args = "<div>" +
+"<p>" + "Caution .....This button will disconnect the ERCM monitoring VLAN" + "</p>" + "</div>";
+
+var html = "<script type='text/javascript'>" +
+							"function callParentDisconnect(ptniiName) {" +
+								"alert(\"INSIDE THE child invoking callParentDisconnect function\");"+
+								"window.opener.disconnect(ptniiName) ;" +
+								"this.close();"+
+							"}"+
+							"function cancel() {"+
+								"this.close();"+
+							"}"+
+					"<\/script>" +
+					"<div id='promptDialog' style ='background-color: #F0FFFF;height:100%;padding: 20px;border: 1px solid #888' >" +
+					"<div id='promptMessage'>" + args + "</div>"+ 
+					"<div id = 'warningtext' style='background-color: #ffb6c1; font-weight:bold;color:#0000A0;'></div>" +"<br><br><br>"+
+					
+					"<form>PTNII Name:<input type='text' id='pntiiId' name='pntiiTxt' value='' placeholder='enter the equipment code of the device'>" +"<br><br><br>"+					
+						 "<button id='promptCancel' type='button' onclick = 'cancel()'>Cancel</button>"  + "      " +
+							"<button id='promptDisconnect' type='button' onclick='callParentDisconnect(document.getElementById(\"pntiiId\").value)'>Disconnect</button></form>" +
+					"</div>";
+
+var win = window.open("","","height=500 , width=500, toolbar=0, menubar=0,resizable=0");
+
+win.document.write(html);
+
+}
+
+</script>
+
+
+<head>
+<style type="text/css">
+
+      .error, .success {
+  margin: 0 auto; 
+  padding: 1% 1%;
+   
+    width: 80%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  
+  border-radius: 5px;
+}
+
+.error {
+  color: white;
+  background: red;
+  font-family:"Verdana";
+  font-size:12px; 
+  font-weight:bold;
+}
+
+.success {
+  color: white;
+  font-weight:bold;
+  font-family:"Verdana";
+  font-size:12px;
+  background: #1b6b52;
+}
+</style>
+</head>
+
+<body>
+
+<div id="success-failure-message-container" style="width:100%;height:auto;min-height:70px" >
+                <div  class="message error" >inweis:inweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweis                inweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweisinweis
+                inweisinweisinweis
+                </div>              
+            </div>
+
+
+</body>
